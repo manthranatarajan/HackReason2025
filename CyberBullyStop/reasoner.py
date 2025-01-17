@@ -21,15 +21,23 @@ def run_scasp(options):
         return False
     return None
 
-def scasp_query(predicate):
+def scasp_query(predicate:dict):
+    pred = []
+    for value in predicate.values():
+        if value == 'True':
+            pred.append('yes')
+        elif value == 'False':
+            pred.append('no')
+        else:
+            pred.append(f"-{value}")
 
     if __name__ == "__main__":
     # Updated s(CASP) content to match the provided s(CASP) code
         scasp_content = """
-contains_offensive_language(yes).
-targets_individual(yes).
-repeats_negative_phrases(no).
-mentions_private_info(yes).
+contains_offensive_language(f{pred[1]}).
+targets_individual(f"{pred[3]}").
+repeats_negative_phrases(f"{pred[4]}").
+mentions_private_info(f"{pred[5]}").
 message_length(short).
 contains_threatening_language(no).
 is_anonymous(no).
