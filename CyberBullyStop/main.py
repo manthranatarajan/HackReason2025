@@ -1,4 +1,5 @@
 from dictionaryGen import getFlagDictionary
+from ..scasp_converter.reasoner import scasp_call
 
 text1 = """I forgot to cook you dinner, not sorry. You're fucking shit. 
             We're going to the party without you. I am going to attack you.
@@ -39,5 +40,7 @@ text11 = """Hi! I wanted to check in and let you know that you’re appreciated 
 
 meanList = [text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11]
 for text in meanList:
-    print(getFlagDictionary(text))
-    print()
+    predicate = getFlagDictionary(text)
+    print(predicate + '\n')
+    scasp_call(predicate,['cyber_bully.pl', '-n1'])
+

@@ -1,13 +1,13 @@
 
-    contains_offensive_language(yes).
+contains_offensive_language(yes).
 targets_individual(yes).
 repeats_negative_phrases(no).
 mentions_private_info(yes).
-is_anonymous(yes).
-contains_threatening_language(no).
-contains_discriminatory_language(yes).
-message_history(repeated_offenses).
 message_length(short).
+contains_threatening_language(no).
+is_anonymous(no).
+contains_discriminatory_language(-yes).
+message_history(-repeated_offenses).
 
 harassment :-
     contains_offensive_language(yes),

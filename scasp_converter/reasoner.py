@@ -1,7 +1,6 @@
 import subprocess
 
-def scasp_call(options: list) -> bool:
-
+def run_scasp(options):
     parameters = ['scasp']
     parameters.extend(options)
 
@@ -22,18 +21,20 @@ def scasp_call(options: list) -> bool:
         return False
     return None
 
-if __name__ == "__main__":
+def scasp_query(predicate):
+
+    if __name__ == "__main__":
     # Updated s(CASP) content to match the provided s(CASP) code
-    scasp_content = """
-    contains_offensive_language(yes).
+        scasp_content = """
+contains_offensive_language(yes).
 targets_individual(yes).
 repeats_negative_phrases(no).
 mentions_private_info(yes).
-is_anonymous(yes).
-contains_threatening_language(no).
-contains_discriminatory_language(yes).
-message_history(repeated_offenses).
 message_length(short).
+contains_threatening_language(no).
+is_anonymous(no).
+contains_discriminatory_language(-yes).
+message_history(-repeated_offenses).
 
 harassment :-
     contains_offensive_language(yes),
@@ -157,7 +158,7 @@ maybe_at_risk :-
             f.write(f"\n{query}\n")
 
         # Call s(CASP) with the file and the "-n1" option
-        result = scasp_call(['cyber_bully.pl', '-n1'])
+        result = run_scasp(['cyber_bully.pl', '-n1'])
 
         # Print the result
         if result is True:
@@ -170,3 +171,4 @@ maybe_at_risk :-
         # Reset the file for the next query
         with open('cyber_bully.pl', 'w') as f:
             f.write(scasp_content)
+scasp_query(1)
