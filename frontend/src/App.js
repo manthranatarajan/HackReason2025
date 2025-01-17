@@ -7,12 +7,32 @@ function App(){
   const[cyber, setCyber] = useState('')
   const inputRef = useRef()
   
-  function submit(e){
+  async function submit(e){
     e.preventDefault();
     setMessage(inputRef.current.value)
     console.log(inputRef.current.value)
     setCyber("Your child is being bullied ❤️")
+
+    e.preventDefault();
+    const payload = message;
+    console.log(payload);
+  
+    try {
+      const response = await fetch("http://127.0.0.1:5000/submit-message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: inputRef.current.value }),
+      });
+      const data = await response.json();
+      console.log("Response from Flask:", data);
+    } catch (error) {
+      console.error("Error sending message to Flask:", error);
+    }
   }
+
+
   return(
     <div style={{backgroundColor: '#86A788'}}>
     <div className='parent_container'>
