@@ -27,7 +27,7 @@ def scasp_call(options: list) -> bool:
 
 if __name__ == "__main__":
     # The Prolog content for cyber_bully.pl
-    simple_content = """
+    scasp_content = """
     abusive_words(message).
     threatening_words(message).
     comedic_words(message).
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     query = "?- mockery(message)."
     # Write the content to cyber_bully.pl
     with open('cyber_bully.pl', 'w') as f:
-        f.write(simple_content + '\n' + query)
+        f.write(scasp_content + '\n' + query)
 
     # Call scasp with the file and the "-n1" option
     result = scasp_call(['cyber_bully.pl', '-n1'])
