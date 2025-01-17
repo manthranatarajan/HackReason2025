@@ -1,0 +1,55 @@
+/* *{
+  margin: 0px;
+} */
+
+@font-face {
+  font-family: 'cookiemonster';
+  src: url('./fonts/Cookiemonster-gv11.ttf') format("truetype");
+}
+
+input{
+  height: 5vh;
+  background-color: #FFFDEC;
+  width: 40vw;
+  font-size: 50px;
+  font-family: cookiemonster;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+
+.parent_container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main{
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit{
+  font-family: cookiemonster;
+  font-size: 40px;
+  padding: 20px;
+  border-radius: 15px;
+  width: 20vw;
+  background-color: #FEFAE0;
+}
+
+
+h1{
+  font-family: cookiemonster;
+  font-size: 7vh;
+}
+
+.result{
+  font-family: cookiemonster;
+  font-size: 50px;
+}
+
