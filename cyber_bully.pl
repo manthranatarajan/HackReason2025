@@ -1,30 +1,4 @@
-import subprocess
 
-def scasp_call(options: list) -> bool:
-
-    parameters = ['scasp']
-    parameters.extend(options)
-
-    call = subprocess.Popen(
-        parameters, stdin=subprocess.PIPE, stdout=subprocess.PIPE, 
-        text=True, universal_newlines=True
-    )
-
-    try:
-        output, _ = call.communicate(timeout=10800)
-    except subprocess.TimeoutExpired:
-        call.kill()
-        return None
-
-    if 'ANSWER:' in output:
-        return True
-    elif 'no models' in output or 'false' in output:
-        return False
-    return None
-
-if __name__ == "__main__":
-    # Updated s(CASP) content to match the provided s(CASP) code
-    scasp_content = """
     contains_offensive_language(yes).
 targets_individual(yes).
 repeats_negative_phrases(no).
@@ -120,53 +94,4 @@ maybe_at_risk :-
     not at_risk_message.
 
 
-    """
-
-    # Queries to test all rules
-    queries = [
-    "?- harassment.",
-    "?- harassment_response.",
-    "?- threat.",
-    "?- threat_response.",
-    "?- exclusion.",
-    "?- exclusion_response.",
-    "?- discrimination.",
-    "?- discrimination_response.",
-    "?- unclassified_bullying.",
-    "?- unclassified_response.",
-    "?- positive_message.",
-    "?- good_behavior.",
-    "?- motivated_message.",
-    "?- negative_behavior.",
-    "?- at_risk_message.",
-    "?- not_at_risk.",
-    "?- maybe_at_risk."
-]
-
-
-    # Write the content to cyber_bully.pl
-    with open('cyber_bully.pl', 'w') as f:
-        f.write(scasp_content)
-
-    # Iterate through queries and print the results
-    for query in queries:
-        # print(f"Running query: {query}")
-
-        # Append the query to the s(CASP) file
-        with open('cyber_bully.pl', 'a') as f:
-            f.write(f"\n{query}\n")
-
-        # Call s(CASP) with the file and the "-n1" option
-        result = scasp_call(['cyber_bully.pl', '-n1'])
-
-        # Print the result
-        if result is True:
-            print(f"{query} is true.")
-        elif result is False:
-            print(f"{query} is false.")
-        else:
-            print(f"{query} returned an unknown result.")
-
-        # Reset the file for the next query
-        with open('cyber_bully.pl', 'w') as f:
-            f.write(scasp_content)
+    
