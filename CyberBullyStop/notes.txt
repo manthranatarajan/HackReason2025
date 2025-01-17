@@ -1,0 +1,59 @@
+client = OpenAI(
+  api_key="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"
+)
+
+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
+
+dictOfFlags = {"empathy":[],"kind":[],"apology":[],"gratitude":[],"offers_help":[],"inclusive":[],
+               "sociopathy":[],"abuse":[],"disrespectful":[],"offensive_lang":[],"exclusive":[],
+               "threatens_individual":[],"negative_phrase_repetitions":[],"private_info":[],"comedy":[],
+               "sarcasm":[],"exaggeration":[],"angry":[],"happy":[],"sad":[],"worried":[]}
+
+               <- is_anonynmous
+
+
+"""I forgot to cook you dinner, not sorry. You're fucking shit. 
+          We're going to the party without you. I am going to attack you.
+          You never listen you never listen you never listen. 
+          You live on circleBlue street, george."""
+
+empathy_flags < i know what you're/they're talking about
+kind_flags < compliments, encouraging
+apology_flags
+gratitude_flags
+offers_help_flags
+inclusive_flags
+
+
+sociopathy_flags < i don't know what you're/they're talking about
+abuse_flags
+disrespectful_flags < not worth apologizing to/thanking
+offensive_lang_flags
+exclusive_flags
+threatens_individual_flags
+negative_phrase_repetitions
+private_info_flags
+
+
+comedy_flags < can be used to mask disrespect
+sarcasm_flags < can be used to mask disrespect
+exaggeration_flags
+angry_flags
+happy_flags
+sad_flags
+worried_flags
+
+is_anonynmous < does this make a difference?
+
+how much time talking about themselves < i think, I feel, i do, my info, 
+how much time talking about us < you think, you feel, you do, your info
+how much time taking about others < they think, they feel, they do, their info
+
+
+divide into time talking about:
+themselves
+us
+anything else
+
+run assign_flags on each category
+
