@@ -2,6 +2,8 @@ client = OpenAI(
   api_key="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"
 )
 
+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
+
 
 empathy_flags < i know what you're/they're talking about
 kind_flags < compliments, encouraging

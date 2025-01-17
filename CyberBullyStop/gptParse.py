@@ -9,22 +9,26 @@ prompt = f"""
     You are a cyberbullying language model trained to extract predicates from text. I will provide ontology with an example.
     Example: "You always overcomplicate things when they don't need to be, just fucking get over it."  
 
-    - Subject:[speaker, recipient, other]. 'You' -> recipient. 
+    - Subject:[speaker, recipient]. 'You' -> recipient. 
     - disrespectful:[1-10]. Unecessarily doubles down on same idea 'just fucking get over it' -> 1
     - offensive_lang:[1-10] "fucking" -> 1
-    - exclusive:[1-0] doesn't use language excluding anyone -> 0
-    - threatens_individual:[1-0] makes no threats -> 0
-    - negative_phrase_repetitions:[1-0] repeats same idea 'just fucking get over it' -> 1
-    - private_info:[1-0] doesn't mention repetitions -> 0
+    - exclusive lang:[1-10] doesn't exclude people from events -> 0
+    - threatens_individual:[1-10] makes no threats -> 0
+    - negative_phrase_repetitions:[1-10] repeats same idea 'just fucking get over it' -> 1
+    - private_info:[1-10] doesn't mention private information -> 0
 
-    You would return:
+    You would generate but NOT return:
     - Subject: recipient
-    - disrespectful: 1
-    - offensive_lang: 1
+    - disrespectful: 8
+    - offensive_lang: 10
     - exclusive: 0
-    - threatens_individual: 0
-    - negative_phrase_repetitions: 1
-    - private_info: 0"""
+    - threatens_individual: 3
+    - negative_phrase_repetitions: 8
+    - private_info: 0
+    
+    And return in the format:
+    [recipient, 8, 10, 0, 3, 8, 0]"""
+
 messages = [ {"role": "system", "content": prompt}]
 
 # sentenceFunction
@@ -40,9 +44,8 @@ def extract_predicates(user_input):
     messages.append({"role": "assistant", "content": assistant_reply})
     return assistant_reply
 
-print(extract_predicates("The bully insulted the victim on social media."))
-print()
-print(extract_predicates("You're so useless and mopey."))
-print()
-print(extract_predicates("I am such a loser"))
+
+
+
+
 

@@ -1,23 +1,11 @@
 import nltk
+from gptParse import extract_predicates
 from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
 nltk.download('punkt_tab')
 nltk.download('stopwords')
 
-from openai import OpenAI
-client = OpenAI(
-  api_key="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"
-)
 
-completion = client.chat.completions.create(
-  model="gpt-4o-mini",
-  store=True,
-  messages=[
-    {"role": "user", "content": "write code to solve the twosum problem"}
-  ]
-)
-
-print(completion.choices[0].message);
 
 
 dictOfFlags = {"empathy":[],"kind":[],"apology":[],"gratitude":[],"offers_help":[],"inclusive":[],
@@ -30,8 +18,16 @@ for key in dictOfFlags:
 
 inputText = """John went to the store and bought some milk. He saw Mary there and talked with her about their plans for the weekend."""
 
-sentences = sent_tokenize(inputText)
 
+text = """I forgot to cook you dinner, not sorry."
+    "You're fucking shit."
+    "We're going to the party without you."
+    "I am going to attack you."
+    "You never listen you never listen you never listen."
+    "You live on circleBlue street, george."""
+
+
+sentences = sent_tokenize(text)
 
 stop_words = set(stopwords.words('english'))
 
@@ -40,7 +36,9 @@ filtered_sentences = [
     for sentence in sentences
 ]
 
-# Resulting sentences ready for LLM input
-print("Filtered Sentences:", filtered_sentences)
+for sentence in filtered_sentences:
+  print( extract_predicates(sentence) )
+  print()
+  
 
 
