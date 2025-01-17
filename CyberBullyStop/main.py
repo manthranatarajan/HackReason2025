@@ -41,6 +41,7 @@ text11 = """Hi! I wanted to check in and let you know that you’re appreciated 
 meanList = [text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11]
 for text in meanList:
     predicate = getFlagDictionary(text)
-    print(predicate + '\n')
+    # print(predicate)
     scasp_query(predicate)
+print("Done")
 
