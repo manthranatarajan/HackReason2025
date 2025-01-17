@@ -1,8 +1,8 @@
 
-contains_offensive_language(f{pred[1]}).
-targets_individual(f"{pred[3]}").
-repeats_negative_phrases(f"{pred[4]}").
-mentions_private_info(f"{pred[5]}").
+contains_offensive_language(no).
+targets_individual(no).
+repeats_negative_phrases(no).
+mentions_private_info(no).
 message_length(short).
 contains_threatening_language(no).
 is_anonymous(no).
@@ -23,75 +23,72 @@ threat :-
     mentions_private_info(yes),
     is_anonymous(yes).
 
-threat_response :-
+threat_response :- 
     threat,
     write('This is a threat.'), nl.
 
-exclusion :-
+exclusion :- 
     repeats_negative_phrases(yes),
     targets_individual(yes),
     not mentions_private_info(yes).
 
-exclusion_response :-
+exclusion_response :- 
     exclusion,
     write('This is exclusionary behavior.'), nl.
 
-discrimination :-
+discrimination :- 
     contains_discriminatory_language(yes),
     targets_individual(yes).
 
-discrimination_response :-
+discrimination_response :- 
     discrimination,
     write('This is discriminatory behavior.'), nl.
 
 % Default for Unclassified Bullying
-unclassified_bullying :-
+unclassified_bullying :- 
     contains_offensive_language(yes),
     not harassment,
     not threat,
     not exclusion,
     not discrimination.
 
-unclassified_response :-
+unclassified_response :- 
     unclassified_bullying,
     write('This is inappropriate content.'), nl.
 
 % Positive Message Characteristics
-positive_message :-
+positive_message :- 
     not contains_offensive_language(yes),
     not contains_discriminatory_language(yes),
     message_length(long).
 
-good_behavior :-
+good_behavior :- 
     positive_message,
     not targets_individual(yes).
 
 % Motivated Message Characteristics
-motivated_message :-
+motivated_message :- 
     positive_message,
     message_history(no_offenses).
 
 % Negative Behavior Assessment
-negative_behavior :-
+negative_behavior :- 
     contains_offensive_language(yes),
     message_history(repeated_offenses).
 
 % At-Risk Messages
-at_risk_message :-
+at_risk_message :- 
     negative_behavior,
     is_anonymous(yes).
 
 % Not At Risk
-not_at_risk :-
+not_at_risk :- 
     motivated_message,
     good_behavior,
     not at_risk_message.
 
 % Maybe At Risk
-maybe_at_risk :-
+maybe_at_risk :- 
     contains_offensive_language(yes),
     message_history(isolated_incident),
     not at_risk_message.
-
-
-    
