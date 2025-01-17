@@ -1,8 +1,8 @@
 
-contains_offensive_language(yes).
-targets_individual(yes).
-repeats_negative_phrases(no).
-mentions_private_info(yes).
+contains_offensive_language(f{pred[1]}).
+targets_individual(f"{pred[3]}").
+repeats_negative_phrases(f"{pred[4]}").
+mentions_private_info(f"{pred[5]}").
 message_length(short).
 contains_threatening_language(no).
 is_anonymous(no).
