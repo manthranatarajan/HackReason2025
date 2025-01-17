@@ -11,12 +11,7 @@ function App(){
     e.preventDefault();
     setMessage(inputRef.current.value)
     console.log(inputRef.current.value)
-    setCyber("Your child is being bullied ❤️")
 
-    e.preventDefault();
-    const payload = message;
-    console.log(payload);
-  
     try {
       const response = await fetch("http://127.0.0.1:5000/submit-message", {
         method: "POST",
@@ -25,8 +20,16 @@ function App(){
         },
         body: JSON.stringify({ message: inputRef.current.value }),
       });
+
       const data = await response.json();
       console.log("Response from Flask:", data);
+
+      if (data.bullying)
+        setCyber("Your child is being bullied ❤️")
+      else
+        setCyber("Your child is not being bullied ❤️")
+
+
     } catch (error) {
       console.error("Error sending message to Flask:", error);
     }

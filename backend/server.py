@@ -17,15 +17,19 @@ def members():
 def handle_message():
     data = request.json
     message = data.get("message", "")
-    calculateResult(message)
+    bullyingDetected = calculateResult(message)
 
     # Process the message here as needed
-    return jsonify({"success": True, "message": "Received your message!"})
+    if bullyingDetected:
+        return jsonify({"success": True, "bullying": True})
+    else:
+        return jsonify({"success": True, "bullying": False})
 
 
 def calculateResult(text):
     flagDictionary = getFlagDictionary(text)
-    #print(flagDictionary)
+    print(flagDictionary)
+    return True
 
 
 if __name__ == "__main__":
