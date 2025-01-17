@@ -4,6 +4,18 @@ client = OpenAI(
 
 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
 
+dictOfFlags = {"empathy":[],"kind":[],"apology":[],"gratitude":[],"offers_help":[],"inclusive":[],
+               "sociopathy":[],"abuse":[],"disrespectful":[],"offensive_lang":[],"exclusive":[],
+               "threatens_individual":[],"negative_phrase_repetitions":[],"private_info":[],"comedy":[],
+               "sarcasm":[],"exaggeration":[],"angry":[],"happy":[],"sad":[],"worried":[]}
+
+               <- is_anonynmous
+
+
+"""I forgot to cook you dinner, not sorry. You're fucking shit. 
+          We're going to the party without you. I am going to attack you.
+          You never listen you never listen you never listen. 
+          You live on circleBlue street, george."""
 
 empathy_flags < i know what you're/they're talking about
 kind_flags < compliments, encouraging
