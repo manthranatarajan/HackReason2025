@@ -13,7 +13,7 @@
 
 ## Introduction
 
-HackReason2025 is an innovative project designed to combat cyberbullying in real-time using sCASP (Stable Model Constraint Answer Set Programming). The project leverages advanced logic-based reasoning to detect and mitigate harmful online interactions effectively.
+CyberBully Detector is an innovative project designed to combat cyberbullying in real-time using sCASP (Stable Model Constraint Answer Set Programming). The project leverages advanced logic-based reasoning to detect and mitigate harmful online interactions effectively.
 
 ## Features
 - Real-time detection of cyberbullying.
